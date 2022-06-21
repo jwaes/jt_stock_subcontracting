@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_jt_stock_subcontracting_jt_stock_subcontracting,jt_stock_subcontracting.jt_stock_subcontracting,model_jt_stock_subcontracting_jt_stock_subcontracting,base.group_user,1,1,1,1
