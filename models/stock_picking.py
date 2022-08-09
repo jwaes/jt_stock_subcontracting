@@ -15,8 +15,12 @@ class PickingType(models.Model):
 #         and (not o.move_ids_without_package or not o.move_ids_without_package[0].partner_id) 
 #         and o.picking_type_id.warehouse_id.partner_id">
 
-# class Picking(models.Model):
-#     _inherit = "stock.picking"
+class Picking(models.Model):
+    _inherit = "stock.picking"
+
+    destination_location_partner_id = fields.Many2one(
+        'res.partner', 'Destination partner',
+        check_company=True,)
 
 #     @api.model
 #     def create(self, vals):
