@@ -22,6 +22,10 @@ class Picking(models.Model):
         'res.partner', 'Destination partner',
         check_company=True,)
 
+    source_location_partner_id = fields.Many2one(
+        'res.partner', 'Source partner',
+        check_company=True,)
+
 #     @api.model
 #     def create(self, vals):
 #         res = super(Picking, self).create(vals)

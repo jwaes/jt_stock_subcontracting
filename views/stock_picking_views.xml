@@ -18,6 +18,9 @@
             <field name="location_dest_id" position="after">
                 <field name="destination_location_partner_id" groups="stock.group_stock_multi_locations" attrs="{'invisible': [('picking_type_code', '!=', 'internal')]}"/>
             </field>
+            <field name="location_id" position="after">
+                <field name="source_location_partner_id" groups="stock.group_stock_multi_locations" attrs="{'invisible': [('picking_type_code', '!=', 'outgoing')]}"/>
+            </field>            
         </field>
     </record>    
 
