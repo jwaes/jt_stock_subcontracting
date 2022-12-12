@@ -13,6 +13,14 @@ class PurchaseOrder(models.Model):
         if self.picking_type_id.destination_location_partner_id:
             self.dest_address_id = self.picking_type_id.destination_location_partner_id
 
+    def _get_destination_location(self):
+        self.ensure_one()
+        if self.picking_type_id.default_location_dest_id.usage != 'customer':
+            self.dest_address_id = False
+        if self.picking_type_id.destination_location_partner_id:
+            self.dest_address_id = self.picking_type_id.destination_location_partner_id        
+        return super()._get_destination_location()
+
     # def _get_destination_location(self):
     #     self.ensure_one()
     #     if self.dest_address_id:
