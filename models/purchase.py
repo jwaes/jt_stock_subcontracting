@@ -19,6 +19,8 @@ class PurchaseOrder(models.Model):
             self.dest_address_id = False
         if self.picking_type_id.destination_location_partner_id:
             self.dest_address_id = self.picking_type_id.destination_location_partner_id        
+        _logger.info("For %s dest_address_id is %s", self.name, self.dest_address_id)
+        _logger.info("default_location_dest_id_usage is %s", self.default_location_dest_id_usage)
         return super()._get_destination_location()
 
     # def _get_destination_location(self):
