@@ -21,7 +21,27 @@ class PurchaseOrder(models.Model):
             self.dest_address_id = self.picking_type_id.destination_location_partner_id        
         _logger.info("For %s dest_address_id is %s", self.name, self.dest_address_id)
         _logger.info("default_location_dest_id_usage is %s", self.default_location_dest_id_usage)
-        return super()._get_destination_location()
+        dest = super()._get_destination_location()
+        _logger.info("after super dest: %s", dest)
+
+        in_bom_products = False
+        not_in_bom_products = False
+        for order_line in self.order_line:
+            _logger.info("Order line  %s", order_line)
+
+            _logger.info("Bom line ids: %s", order_line.product_id.bom_line_ids)
+
+            for bom_line in order_line.product_id.bom_line_ids.filtered(lambda line: line.company_id == self.company_id):
+                _logger.info("Bom line %s for %s and contractors %s", bom_line, bom_line.bom_id.name, bom_line_bom_id.subcontractor_ids)
+
+            if any(bom_line.bom_id.type == 'subcontract' and self.dest_address_id in bom_line.bom_id.subcontractor_ids for bom_line in order_line.product_id.bom_line_ids.filtered(lambda line: line.company_id == self.company_id)):
+                in_bom_products = True
+                _logger.info("in bom prouct")
+            else:
+                not_in_bom_products = True
+                _logger.info("not in bom prouct")
+
+        return dest
 
     # def _get_destination_location(self):
     #     self.ensure_one()
