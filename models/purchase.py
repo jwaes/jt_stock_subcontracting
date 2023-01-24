@@ -28,7 +28,7 @@ class PurchaseOrder(models.Model):
         not_in_bom_products = False
         for order_line in self.order_line:
             _logger.info("Order line  %s", order_line)
-
+            _logger.info("Order line product: %s : %s", order_line.product_id, order_line.product_id.name)
             _logger.info("Bom line ids: %s", order_line.product_id.bom_line_ids)
 
             for bom_line in order_line.product_id.bom_line_ids.filtered(lambda line: line.company_id == self.company_id):
