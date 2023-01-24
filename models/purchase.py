@@ -21,8 +21,8 @@ class PurchaseOrder(models.Model):
             self.dest_address_id = self.picking_type_id.destination_location_partner_id        
         _logger.info("For %s dest_address_id is %s", self.name, self.dest_address_id)
         _logger.info("default_location_dest_id_usage is %s", self.default_location_dest_id_usage)
-        dest = super()._get_destination_location()
-        _logger.info("after super dest: %s", dest)
+
+
 
         in_bom_products = False
         not_in_bom_products = False
@@ -40,6 +40,12 @@ class PurchaseOrder(models.Model):
             else:
                 not_in_bom_products = True
                 _logger.info("not in bom prouct")
+
+                
+                        
+        dest = super()._get_destination_location()
+        _logger.info("after super dest: %s", dest)
+
 
         return dest
 
