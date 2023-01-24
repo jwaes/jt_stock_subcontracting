@@ -32,7 +32,7 @@ class PurchaseOrder(models.Model):
             _logger.info("Bom line ids: %s", order_line.product_id.bom_line_ids)
 
             for bom_line in order_line.product_id.bom_line_ids.filtered(lambda line: line.company_id == self.company_id):
-                _logger.info("Bom line %s for %s and contractors %s", bom_line, bom_line.bom_id, bom_line_bom_id.subcontractor_ids)
+                _logger.info("Bom line %s for %s and contractors %s", bom_line, bom_line.bom_id, bom_line.bom_id.subcontractor_ids)
 
             if any(bom_line.bom_id.type == 'subcontract' and self.dest_address_id in bom_line.bom_id.subcontractor_ids for bom_line in order_line.product_id.bom_line_ids.filtered(lambda line: line.company_id == self.company_id)):
                 in_bom_products = True
