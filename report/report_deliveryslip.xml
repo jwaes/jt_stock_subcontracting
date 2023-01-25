@@ -34,6 +34,7 @@
         <xpath expr="//t[@t-call='stock.report_delivery_document']" position="replace">
             <t t-set="langfix" t-value="o.partner_id.lang"/>
             <t t-set="langfix" t-if="not langfix" t-value="o.env.lang"/>
+            <t t-set="langfix" t-if="not langfix" t-value="en_US"/>
             <t t-call="stock.report_delivery_document" t-lang="langfix"/>
         </xpath>
     </template>
