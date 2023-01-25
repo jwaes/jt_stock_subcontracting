@@ -30,4 +30,10 @@
 
     </template>
 
+    <template id="report_deliveryslip" inherit_id="stock.report_deliveryslip">
+        <xpath expr="//t[@t-call='stock.report_delivery_document']" position="replace">
+            <t t-call="stock.report_delivery_document" t-lang="o.partner_id.lang or o.env.lang"/>
+        </xpath>
+    </template>
+
 </odoo>
