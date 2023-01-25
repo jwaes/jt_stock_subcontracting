@@ -32,7 +32,9 @@
 
     <template id="report_deliveryslip" inherit_id="stock.report_deliveryslip">
         <xpath expr="//t[@t-call='stock.report_delivery_document']" position="replace">
-            <t t-call="stock.report_delivery_document" t-lang="o.partner_id.lang or o.env.lang"/>
+            <t t-set="langfix" t-value="o.partner_id.lang"/>
+            <t t-set="langfix" t-if="not langfix" t-value="o.env.lang"/>
+            <t t-call="stock.report_delivery_document" t-lang="langfix"/>
         </xpath>
     </template>
 
