@@ -2,6 +2,12 @@
 <odoo>
 
     <template id="report_delivery_document" inherit_id="stock.report_delivery_document">
+        <xpath expr="//t[@t-set='o']" position="replace">
+            <t t-set="langfix" t-value="o.partner_id.lang"/>
+            <t t-set="langfix" t-if="not langfix" t-value="o.env.lang"/>
+            <t t-set="langfix" t-if="not langfix" t-value="en"/>            
+            <t t-set="o" t-value="o.with_context(lang=langfix)"/>
+        </xpath>
         <!-- <xpath expr="//div[@name='div_outgoing_address']/div[2]" position="attributes">
             <attribute name="t-if" >o.picking_type_id.code != 'internal' and (not o.move_ids_without_package or not o.move_ids_without_package[0].partner_id) and o.picking_type_id.warehouse_id.partner_id and not o.picking_type_id.destination_location_partner_id</attribute>
         </xpath> -->
@@ -34,7 +40,7 @@
         <xpath expr="//t[@t-call='stock.report_delivery_document']" position="replace">
             <t t-set="langfix" t-value="o.partner_id.lang"/>
             <t t-set="langfix" t-if="not langfix" t-value="o.env.lang"/>
-            <t t-set="langfix" t-if="not langfix" t-value="en_US"/>
+            <t t-set="langfix" t-if="not langfix" t-value="en"/>
             <t t-call="stock.report_delivery_document" t-lang="langfix"/>
         </xpath>
     </template>
